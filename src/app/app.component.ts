@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './services/users.service';
 import { Users } from './models/users';
-import { MatDialog } from '@angular/material/dialog';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -19,14 +18,13 @@ import { MatTableDataSource } from '@angular/material/table';
   ],
 })
 export class AppComponent implements OnInit {
-  public users;
+  public users: Users[];
   public dataSource;
   public displayedColumns: string[] = ['id', 'name', 'username', 'email'];
   public expandElement: Users | null;
   
   constructor (
-    private usersService: UsersService,
-    public dialog: MatDialog
+    private usersService: UsersService
   ){}
 
   ngOnInit() {

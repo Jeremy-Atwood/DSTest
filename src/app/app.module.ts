@@ -8,17 +8,13 @@ import { UsersService } from './services/users.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
-import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,17 +22,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatInputModule,
 
     // material
     MatTableModule,
-    MatDialogModule,
     MatFormFieldModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
-  entryComponents: [UserDialogComponent]
 })
 export class AppModule { }

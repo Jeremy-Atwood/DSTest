@@ -14,9 +14,9 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
-  public getUsersList(): Observable<Users> {
+  public getUsersList(): Observable<Users[]> {
     const url = this.url + "users";
-    const response = this.http.get<Users>(url);
+    const response = this.http.get<Users[]>(url);
     return response;
   }
 
