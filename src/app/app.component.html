@@ -1,0 +1,56 @@
+<div class="container">
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let user" [attr.colspan]="displayedColumns.length">
+        <div class="example-element-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="example-element-description" fxLayout="row" fxLayoutAlign="space-evenly start">
+            <div fxFlex="nogrow">
+              <h2>Personal Information: </h2>
+              Phone Number: {{user.phone}} <br>
+              Website: {{user.website}}
+            </div>
+            <div fxFlex="nogrow">
+              <h2>Address:</h2>
+              Street: {{user.address.street}} <br>
+              Suite: {{user.address.suite}} <br>
+              City: {{user.address.street}} <br>
+              Zip: {{user.address.zipcode}} <br>
+              Geo Location: <br> Lat: {{user.address.geo.lat}}, <br> Long {{user.address.geo.lng}} <br>
+            </div>
+            <div fxFlex="nogrow">
+              <h2> Company Information: </h2>
+              Company Name: {{user.company.name}} <br>
+              Company Catch Phrase: {{user.company.catchPhrase}} <br>
+              Company Business Strategy: {{user.company.bs}}
+            </div>
+            <!-- {{user.address | json}} -->
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    </tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+
+
+  <!-- Copyright 2019 Google Inc. All Rights Reserved.
+          Use of this source code is governed by an MIT-style license that
+          can be found in the LICENSE file at http://angular.io/license -->
+
+</div>
